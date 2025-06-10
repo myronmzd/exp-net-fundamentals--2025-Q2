@@ -8,8 +8,8 @@ resource "aws_vpc" "main" {
   }
 }
 
-data "http" "my_ip" {
-  url = "https://api.ipify.org?format=text"
+data "http" "myip" {
+  url = "https://ipv4.icanhazip.com"
 }
 
 resource "aws_subnet" "public_subnet" {
@@ -69,7 +69,7 @@ resource "aws_security_group" "name" {
     from_port   = 22
     to_port     = 22
     protocol    = "tcp"
-    cidr_blocks = ["0.0.0.0/0"] # ["${data.http.my_ip.body}/32"]
+    cidr_blocks = ["${chomp(data.http.myip.response_body)}/32"]
   }
 
   ingress {
