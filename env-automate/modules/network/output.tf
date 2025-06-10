@@ -3,7 +3,7 @@ output "vpc_id" {
   value       = aws_vpc.main.id  # ✅ Directly reference the local resource
 }
 
-output "subnet_id" {
+output "subnet_id_public" {
   description = "Subnet ID"
-  value       = aws_subnet.main.id  # ✅ Directly reference the local resource
+  value       = aws_subnet.public_subnet.id  # ✅ Directly reference the local resource
 }

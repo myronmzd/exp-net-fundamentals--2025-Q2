@@ -4,17 +4,18 @@ variable "aws_region" {
   default     = "ap-south-1"
 }
 
-variable "vpc_cidr" {
+variable "subnet_public_cidr" {
   description = "CIDR block for the VPC"
   type        = string
-  default     = "10.0.0.0/16"
+  default     = "10.200.123.0/25"
 }
 
-variable "subnet_cidr" {
-  description = "CIDR block for the subnet"
+variable "subnet_private_cidr" {
+  description = "CIDR block for the private subnet"
   type        = string
-  default     = "10.0.1.0/24"
+  default     = "10.200.123.128/25"
 }
+
 
 variable "ami_id" {
   description = "AMI ID for the instance"
@@ -26,4 +27,10 @@ variable "instance_type" {
   description = "EC2 instance type"
   type        = string
   default     = "t2.micro"
+}
+
+variable "vpc_cidr" {
+  description = "CIDR block for the VPC"
+  type        = string
+  default     = "10.200.123.0/24"
 }
