@@ -10,10 +10,12 @@ module "network" {
 } 
 
 module "compute" {
-  source        = "./modules/compute"
-  ami_id        = var.ami_id
-  instance_type = var.instance_type
-  subnet_id     = module.network.subnet_id_public
+  source           = "./modules/compute"
+  ami_id           = var.ami_id
+  instance_type    = var.instance_type
+  subnet_id        = module.network.subnet_id_public
+  security_group = module.network.security_group_id
+  key_name         = "mykey"
 }
 
 # VPC: 10.200.123.0/24 → 251 usable IPs total
