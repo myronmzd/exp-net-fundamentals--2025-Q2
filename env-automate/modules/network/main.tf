@@ -8,6 +8,10 @@ resource "aws_vpc" "main" {
   }
 }
 
+data "http" "my_ip" {
+  url = "https://api.ipify.org?format=text"
+}
+
 resource "aws_subnet" "public_subnet" {
   vpc_id                  = aws_vpc.main.id
   cidr_block              = var.subnet_public_cidr
@@ -22,7 +26,7 @@ resource "aws_subnet" "public_subnet" {
 resource "aws_subnet" "private_subnet" {
   vpc_id                  = aws_vpc.main.id
   cidr_block              = var.subnet_private_cidr
-  availability_zone       = data.aws_availability_zones.available.names[0]
+  availability_zone       = data.aws_availability_zones.available.names[1]
 
   tags = {
     Name = "Network_private_Subnet"
@@ -61,18 +65,35 @@ resource "aws_security_group" "name" {
   vpc_id = aws_vpc.main.id
 
   ingress {
-    from_port   = 0
-    to_port     = 0
-    protocol    = "-1"
-    cidr_blocks = ["YOUR_IP/32"]
+    description = "Allow SSH"
+    from_port   = 22
+    to_port     = 22
+    protocol    = "tcp"
+    cidr_blocks = ["0.0.0.0/0"] # ["${data.http.my_ip.body}/32"]
   }
+
+  ingress {
+    description = "Allow HTTP"
+    from_port   = 80
+    to_port     = 80
+    protocol    = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+
   egress {
     from_port   = 0
     to_port     = 0
     protocol    = "-1"
-    cidr_blocks = ["YOUR_IP/32"]
+    cidr_blocks = ["0.0.0.0/0"]
   } 
   tags = {
     Name = "Network_SecurityGroup"
   }
 }
+
+
+data "aws_availability_zones" "available" {
+  state = "available"
+}
+
+
