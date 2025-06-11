@@ -20,13 +20,13 @@ variable "subnet_private_cidr" {
 variable "ami_id" {
   description = "AMI ID for the instance"
   type        = string
-  default     = "ami-02521d90e7410d9f0"
+  default     = "ami-0266c1f64e2a73942"
 }
 
 variable "instance_type" {
   description = "EC2 instance type"
   type        = string
-  default     = "t2.micro"
+  default     = "t3.micro"
 }
 
 variable "vpc_cidr" {
