@@ -15,7 +15,7 @@ This project demonstrates how to set up a network infrastructure in AWS using Te
   - `10.200.123.128/25` → Private Subnet → 123 usable IPs.  
     IP Range: `10.200.123.128 - 10.200.123.255`
 
-![VPC Diagram](image.png)
+![VPC Diagram](doc/image.png)
 
 ---
 
@@ -47,7 +47,7 @@ To exclude certain resources from the graph:
 terraform graph | grep -v 'aws_route_table_association' | grep -v 'aws_security_group_rule' | grep -v 'aws_route_table.public' | grep -v 'data.http.my_ip' | dot -Tpng -o graph-no-assoc.png
 ```
 
-![Terraform Graph](graph-no-assoc1.png)
+![Terraform Graph](doc/graph-no-assoc1.png)
 
 ---
 
@@ -149,8 +149,8 @@ resource "aws_network_interface_attachment" "eni_attachment" {
 }
 ```
 
-![Before Attaching ENI](image-1.png)  
-![After Attaching ENI](image-2.png)
+![Before Attaching ENI](doc/image-1.png)  
+![After Attaching ENI](doc/image-2.png)
 
 ---
 
