@@ -5,13 +5,13 @@
 	"name": "Ubuntu",
 	"image": "mcr.microsoft.com/devcontainers/base:noble",
 	"features": {
-	  "ghcr.io/devcontainers/features/aws-cli:1": {},
-	  "ghcr.io/devcontainers/features/terraform:1": {}
+	  "ghcr.io/devcontainers/features/aws-cli:1": {"version": "latest"},
+	  "ghcr.io/devcontainers/features/terraform:1": {"version": "latest"}
 	},
 	"postCreateCommand": [
 	 "sudo apt-get install -y iputils-ping curl wget net-tools iproute2 dnsutils traceroute nmap netcat tcpdump iperf3 mtr telnet htop",
-	 "Sudo apt-get update",
-	 "Sudo apt-get upgrade -y"
+	 "sudo apt-get update",
+	 "sudo apt-get upgrade -y"
 	],
 	"customizations": {
 	  "vscode": {
