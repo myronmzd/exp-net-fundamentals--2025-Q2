@@ -117,7 +117,7 @@ Persistent routes can be added using the `-p` option:
 Adding a route can redirect traffic to a private network instead of the default internet interface:
 - Example: `route add <destination> MASK <subnet_mask> <gateway> -p`
 
----
+  -------------
 
 ## Additional Notes
 - Ensure proper IP configuration for critical servers to avoid dependency on DHCP.
