@@ -11,13 +11,30 @@ module "network" {
 
 module "compute" {
   source           = "./modules/compute"
-  ami_id           = var.ami_id
-  instance_type    = var.instance_type
+  ami_id           = var.ami_id_win
+  instance_type    = var.instance_type_win
   subnet_id        = module.network.subnet_id_public
-  security_group = module.network.security_group_id
+  security_group   = module.network.security_group_id
   key_name         = "mykey"
 }
 
+module "compute" {
+  source           = "./modules/compute"
+  ami_id           = var.ami_id_linux
+  instance_type    = var.instance_type_linux
+  subnet_id        = module.network.subnet_id_public
+  security_group   = module.network.security_group_id
+  key_name         = "mykey"
+}
+
+module "compute" {
+  source           = "./modules/compute"
+  ami_id           = var.ami_id_redhat
+  instance_type    = var.instance_type_redhat
+  subnet_id        = module.network.subnet_id_public
+  security_group   = module.network.security_group_id
+  key_name         = "mykey"
+}
 # VPC: 10.200.123.0/24 → 251 usable IPs total
 
 # Split into two /25:
